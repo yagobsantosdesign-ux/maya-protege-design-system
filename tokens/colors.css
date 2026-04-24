@@ -1,0 +1,42 @@
+/* ============================================================
+   Maya Protege Design System — Color Tokens
+   ============================================================ */
+
+:root {
+  /* ── Brand Greens ── */
+  --color-timber-green-950: #0C332A;
+  --color-sea-green-700: #0D9448;
+  --color-sea-green-500: #14D366;
+  --color-timber-green-50: #EFFAF5;
+
+  /* ── Accent ── */
+  --color-dull-lavender: #A29DFF;
+
+  /* ── Neutrals ── */
+  --color-white: #FFFFFF;
+  --color-black: #000000;
+  --color-gray-900: #111111;
+  --color-gray-700: #333333;
+  --color-gray-500: #666666;
+  --color-gray-300: #AAAAAA;
+  --color-gray-100: #F5F5F5;
+
+  /* ── Semantic Roles ── */
+  --color-background-primary:   var(--color-white);
+  --color-background-dark:      var(--color-timber-green-950);
+  --color-background-light:     var(--color-timber-green-50);
+
+  --color-text-primary:         var(--color-gray-900);
+  --color-text-secondary:       var(--color-gray-700);
+  --color-text-muted:           var(--color-gray-500);
+  --color-text-on-dark:         var(--color-white);
+
+  --color-brand-primary:        var(--color-sea-green-700);
+  --color-brand-secondary:      var(--color-sea-green-500);
+  --color-brand-deep:           var(--color-timber-green-950);
+
+  --color-accent:               var(--color-dull-lavender);
+
+  --color-border:               #E2E8E5;
+  --color-border-dark:          rgba(255, 255, 255, 0.12);
+}

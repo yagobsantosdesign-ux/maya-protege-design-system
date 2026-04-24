@@ -1,0 +1,80 @@
+/* ============================================================
+   Maya Protege Design System — Typography Tokens
+   ============================================================ */
+
+/* Google Fonts import — add to <head> */
+/* <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"> */
+
+:root {
+  /* ── Font Families ── */
+  --font-display:  'Libre Baskerville', Georgia, serif;   /* Headings / institutional tone */
+  --font-body:     'Inter', system-ui, sans-serif;         /* Body / functional copy */
+
+  /* ── Font Weights ── */
+  --fw-light:    300;
+  --fw-regular:  400;
+  --fw-medium:   500;
+  --fw-semibold: 600;
+  --fw-bold:     700;
+
+  /* ── Type Scale (fluid, clamp-based) ── */
+  --text-xs:   0.75rem;   /* 12px — captions, labels */
+  --text-sm:   0.875rem;  /* 14px — secondary text */
+  --text-base: 1rem;      /* 16px — body default */
+  --text-md:   1.125rem;  /* 18px — lead text */
+  --text-lg:   1.25rem;   /* 20px — small headings */
+  --text-xl:   1.5rem;    /* 24px */
+  --text-2xl:  2rem;      /* 32px */
+  --text-3xl:  2.5rem;    /* 40px */
+  --text-4xl:  3.5rem;    /* 56px */
+  --text-5xl:  clamp(3rem, 6vw, 5rem); /* Hero */
+
+  /* ── Line Heights ── */
+  --lh-tight:   1.15;
+  --lh-snug:    1.35;
+  --lh-normal:  1.5;
+  --lh-relaxed: 1.7;
+
+  /* ── Letter Spacing ── */
+  --ls-tight:   -0.02em;
+  --ls-normal:   0;
+  --ls-wide:     0.04em;
+  --ls-wider:    0.08em;
+  --ls-widest:   0.15em;
+}
+
+/* ── Type Utilities ── */
+
+.type-display {
+  font-family: var(--font-display);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-tight);
+}
+
+.type-heading {
+  font-family: var(--font-display);
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-snug);
+}
+
+.type-body {
+  font-family: var(--font-body);
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-relaxed);
+}
+
+.type-label {
+  font-family: var(--font-body);
+  font-weight: var(--fw-medium);
+  font-size: var(--text-sm);
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+}
+
+.type-caption {
+  font-family: var(--font-body);
+  font-weight: var(--fw-regular);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}

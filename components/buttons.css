@@ -1,0 +1,99 @@
+/* ============================================================
+   Maya Protege Design System — Button Components
+   ============================================================ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  font-family: var(--font-body);
+  font-weight: var(--fw-medium);
+  font-size: var(--text-sm);
+  letter-spacing: var(--ls-wide);
+  text-decoration: none;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--duration-normal) var(--ease-default);
+  white-space: nowrap;
+  outline: none;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--color-sea-green-500);
+  outline-offset: 2px;
+}
+
+/* ── Sizes ── */
+.btn--sm {
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--text-xs);
+}
+
+.btn--md {
+  padding: var(--space-3) var(--space-6);
+}
+
+.btn--lg {
+  padding: var(--space-4) var(--space-8);
+  font-size: var(--text-base);
+}
+
+/* ── Primary ── */
+.btn--primary {
+  background: var(--color-timber-green-950);
+  color: var(--color-text-on-dark);
+}
+.btn--primary:hover {
+  background: var(--color-sea-green-700);
+}
+.btn--primary:active {
+  background: var(--color-timber-green-950);
+  transform: scale(0.98);
+}
+
+/* ── Secondary ── */
+.btn--secondary {
+  background: transparent;
+  color: var(--color-timber-green-950);
+  border: 1.5px solid var(--color-timber-green-950);
+}
+.btn--secondary:hover {
+  background: var(--color-timber-green-50);
+}
+.btn--secondary:active {
+  transform: scale(0.98);
+}
+
+/* ── Accent ── */
+.btn--accent {
+  background: var(--color-sea-green-500);
+  color: var(--color-timber-green-950);
+}
+.btn--accent:hover {
+  background: var(--color-sea-green-700);
+  color: var(--color-white);
+}
+
+/* ── Ghost ── */
+.btn--ghost {
+  background: transparent;
+  color: var(--color-text-secondary);
+}
+.btn--ghost:hover {
+  background: var(--color-gray-100);
+  color: var(--color-text-primary);
+}
+
+/* ── Disabled ── */
+.btn:disabled,
+.btn--disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/* ── Full width ── */
+.btn--full {
+  width: 100%;
+}

@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maya Protege — Design System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../index.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--color-gray-100);
+      color: var(--color-text-primary);
+    }
+
+    /* ── Doc nav ── */
+    .doc-nav {
+      position: fixed;
+      top: 0; left: 0; bottom: 0;
+      width: 220px;
+      background: var(--color-timber-green-950);
+      padding: var(--space-8) var(--space-6);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+      overflow-y: auto;
+      z-index: var(--z-overlay);
+    }
+
+    .doc-nav__logo {
+      font-family: var(--font-display);
+      font-size: var(--text-lg);
+      color: var(--color-white);
+      margin-bottom: var(--space-6);
+      line-height: 1.2;
+    }
+
+    .doc-nav__logo span {
+      display: block;
+      font-family: var(--font-body);
+      font-size: var(--text-xs);
+      font-weight: var(--fw-medium);
+      letter-spacing: var(--ls-widest);
+      text-transform: uppercase;
+      color: var(--color-sea-green-500);
+      margin-top: var(--space-1);
+    }
+
+    .doc-nav a {
+      font-size: var(--text-sm);
+      color: rgba(255,255,255,0.55);
+      text-decoration: none;
+      padding: var(--space-2) var(--space-3);
+      border-radius: var(--radius-sm);
+      transition: all var(--duration-fast) var(--ease-default);
+    }
+
+    .doc-nav a:hover {
+      color: var(--color-white);
+      background: rgba(255,255,255,0.08);
+    }
+
+    /* ── Doc main ── */
+    .doc-main {
+      margin-left: 220px;
+      padding: var(--space-12) var(--space-12) var(--space-24);
+      max-width: 1100px;
+    }
+
+    /* ── Section titles ── */
+    .doc-section {
+      margin-bottom: var(--space-20);
+      scroll-margin-top: var(--space-8);
+    }
+
+    .doc-section__header {
+      display: flex;
+      align-items: baseline;
+      gap: var(--space-4);
+      margin-bottom: var(--space-8);
+      padding-bottom: var(--space-4);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .doc-section__number {
+      font-family: var(--font-body);
+      font-size: var(--text-xs);
+      font-weight: var(--fw-medium);
+      letter-spacing: var(--ls-widest);
+      text-transform: uppercase;
+      color: var(--color-sea-green-700);
+    }
+
+    .doc-section__title {
+      font-family: var(--font-display);
+      font-size: var(--text-2xl);
+      font-weight: var(--fw-regular);
+      color: var(--color-text-primary);
+    }
+
+    /* ── Color swatches ── */
+    .color-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: var(--space-4);
+    }
+
+    .swatch {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--color-border);
+    }
+
+    .swatch__color {
+      height: 80px;
+    }
+
+    .swatch__info {
+      padding: var(--space-3);
+      background: var(--color-white);
+    }
+
+    .swatch__name {
+      font-size: var(--text-sm);
+      font-weight: var(--fw-medium);
+      color: var(--color-text-primary);
+    }
+
+    .swatch__hex {
+      font-size: var(--text-xs);
+      font-family: 'Courier New', monospace;
+      color: var(--color-text-muted);
+      margin-top: var(--space-1);
+    }
+
+    /* ── Type specimens ── */
+    .type-specimen {
+      background: var(--color-white);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-8);
+      margin-bottom: var(--space-4);
+    }
+
+    .type-specimen__label {
+      font-size: var(--text-xs);
+      font-weight: var(--fw-medium);
+      letter-spacing: var(--ls-widest);
+      text-transform: uppercase;
+      color: var(--color-sea-green-700);
+      margin-bottom: var(--space-4);
+    }
+
+    .type-specimen__meta {
+      font-size: var(--text-xs);
+      color: var(--color-text-muted);
+      margin-top: var(--space-3);
+      font-family: 'Courier New', monospace;
+    }
+
+    /* ── Component rows ── */
+    .component-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-4);
+      align-items: center;
+      background: var(--color-white);
+      padding: var(--space-8);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--color-border);
+      margin-bottom: var(--space-4);
+    }
+
+    .component-row--dark {
+      background: var(--color-timber-green-950);
+    }
+
+    /* ── Spacing ruler ── */
+    .spacing-grid {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    .spacing-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+    }
+
+    .spacing-item__bar {
+      background: var(--color-sea-green-500);
+      height: 16px;
+      border-radius: var(--radius-sm);
+      flex-shrink: 0;
+    }
+
+    .spacing-item__label {
+      font-size: var(--text-xs);
+      font-family: 'Courier New', monospace;
+      color: var(--color-text-muted);
+      white-space: nowrap;
+    }
+
+    /* ── Hero ── */
+    .doc-hero {
+      background: var(--color-timber-green-950);
+      border-radius: var(--radius-xl);
+      padding: var(--space-16) var(--space-12);
+      margin-bottom: var(--space-16);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .doc-hero::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(20,211,102,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .doc-hero__eyebrow {
+      font-family: var(--font-body);
+      font-size: var(--text-xs);
+      font-weight: var(--fw-medium);
+      letter-spacing: var(--ls-widest);
+      text-transform: uppercase;
+      color: var(--color-sea-green-500);
+      margin-bottom: var(--space-4);
+    }
+
+    .doc-hero__title {
+      font-family: var(--font-display);
+      font-size: var(--text-4xl);
+      font-weight: var(--fw-bold);
+      color: var(--color-white);
+      line-height: var(--lh-tight);
+      max-width: 500px;
+      margin-bottom: var(--space-6);
+    }
+
+    .doc-hero__desc {
+      font-size: var(--text-md);
+      color: rgba(255,255,255,0.6);
+      max-width: 560px;
+      line-height: var(--lh-relaxed);
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav class="doc-nav">
+  <div class="doc-nav__logo">
+    Maya Protege
+    <span>Design System</span>
+  </div>
+  <a href="#colors">Cores</a>
+  <a href="#typography">Tipografia</a>
+  <a href="#spacing">Espaçamento</a>
+  <a href="#buttons">Botões</a>
+  <a href="#cards">Cards</a>
+  <a href="#badges">Badges</a>
+  <a href="#forms">Formulários</a>
+</nav>
+
+<!-- ── MAIN ── -->
+<main class="doc-main">
+
+  <div class="doc-hero">
+    <p class="doc-hero__eyebrow">v1.0.0</p>
+    <h1 class="doc-hero__title">Maya Protege Design System</h1>
+    <p class="doc-hero__desc">
+      Tokens visuais, componentes e padrões de interface que expressam os valores de
+      <strong style="color:#14D366">planejamento, proteção e respeito</strong> da marca.
+    </p>
+  </div>
+
+  <!-- ── COLORS ── -->
+  <section id="colors" class="doc-section">
+    <div class="doc-section__header">
+      <span class="doc-section__number">01</span>
+      <h2 class="doc-section__title">Cores</h2>
+    </div>
+
+    <h3 style="font-family:var(--font-body);font-size:var(--text-sm);font-weight:var(--fw-medium);letter-spacing:var(--ls-wider);text-transform:uppercase;color:var(--color-text-muted);margin-bottom:var(--space-4)">Paleta Principal</h3>
+    <div class="color-grid" style="margin-bottom:var(--space-8)">
+      <div class="swatch">
+        <div class="swatch__color" style="background:#0C332A"></div>
+        <div class="swatch__info">
+          <div class="swatch__name">Timber Green 950</div>
+          <div class="swatch__hex">#0C332A</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch__color" style="background:#0D9448"></div>
+        <div class="swatch__info">
+          <div class="swatch__name">Sea Green 700</div>
+          <div class="swatch__hex">#0D9448</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch__color" style="background:#14D366"></div>
+        <div class="swatch__info">
+          <div class="swatch__name">Sea Green 500</div>
+          <div class="swatch__hex">#14D366</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch__color" style="background:#A29DFF"></div>
+        <div class="swatch__info">
+          <div class="swatch__name">Dull Lavender</div>
+          <div class="swatch__hex">#A29DFF</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch__color" style="background:#EFFAF5;border-bottom:1px solid var(--color-border)"></div>
+        <div class="swatch__info">
+          <div class="swatch__name">Timber Green 50</div>
+          <div class="swatch__hex">#EFFAF5</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── TYPOGRAPHY ── -->
+  <section id="typography" class="doc-section">
+    <div class="doc-section__header">
+      <span class="doc-section__number">02</span>
+      <h2 class="doc-section__title">Tipografia</h2>
+    </div>
+
+    <div class="type-specimen">
+      <div class="type-specimen__label">Display — Libre Baskerville Bold</div>
+      <p style="font-family:'Libre Baskerville',serif;font-size:clamp(2rem,5vw,3.5rem);font-weight:700;line-height:1.15;letter-spacing:-0.02em;">Proteção com propósito</p>
+      <div class="type-specimen__meta">font-family: Libre Baskerville · weight: 700 · tracking: -0.02em</div>
+    </div>
+
+    <div class="type-specimen">
+      <div class="type-specimen__label">Heading — Libre Baskerville Regular</div>
+      <p style="font-family:'Libre Baskerville',serif;font-size:2rem;font-weight:400;line-height:1.35;">Cuidado que permanece</p>
+      <div class="type-specimen__meta">font-family: Libre Baskerville · weight: 400 · size: 32px</div>
+    </div>
+
+    <div class="type-specimen">
+      <div class="type-specimen__label">Body — Inter Regular</div>
+      <p style="font-family:'Inter',sans-serif;font-size:1rem;line-height:1.7;color:var(--color-text-secondary);max-width:600px">
+        O Maya Protege é um plano funerário desenvolvido para oferecer organização, suporte e cuidado, com processos claros e atuação responsável em todos os momentos.
+      </p>
+      <div class="type-specimen__meta">font-family: Inter · weight: 400 · size: 16px · line-height: 1.7</div>
+    </div>
+
+    <div class="type-specimen">
+      <div class="type-specimen__label">Label — Inter Medium Uppercase</div>
+      <p style="font-family:'Inter',sans-serif;font-size:0.75rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--color-sea-green-700)">Assistência Funerária Familiar</p>
+      <div class="type-specimen__meta">font-family: Inter · weight: 500 · size: 12px · tracking: 0.15em · uppercase</div>
+    </div>
+  </section>
+
+  <!-- ── SPACING ── -->
+  <section id="spacing" class="doc-section">
+    <div class="doc-section__header">
+      <span class="doc-section__number">03</span>
+      <h2 class="doc-section__title">Espaçamento</h2>
+    </div>
+
+    <div class="spacing-grid" style="background:var(--color-white);padding:var(--space-8);border-radius:var(--radius-lg);border:1px solid var(--color-border)">
+      <div class="spacing-item"><div class="spacing-item__bar" style="width:4px"></div><span class="spacing-item__label">--space-1 · 4px</span></div>
+      <div class="spacing-item"><div class="spacing-item__bar" style="width:8px"></div><span class="spacing-item__label">--space-2 · 8px</span></div>
+      <div class="spacing-item"><div class="spacing-item__bar" style="width:12px"></div><span class="spacing-item__label">--space-3 · 12px</span></div>
+      <div class="spacing-item"><div class="spacing-item__bar" style="width:16px"></div><span class="spacing-item__label">--space-4 · 16px</span></div>
+      <div class="spacing-item"><div class="spacing-item__bar" style="width:24px"></div><span class="spacing-item__label">--space-6 · 24px</span></div>
+      <div class="spacing-item"><div class="spacing-item__bar" style="width:32px"></div><span class="spacing-item__label">--space-8 · 32px</span></div>
+      <div class="spacing-item"><div class="spacing-item__bar" style="width:48px"></div><span class="spacing-item__label">--space-12 · 48px</span></div>
+      <div class="spacing-item"><div class="spacing-item__bar" style="width:64px"></div><span class="spacing-item__label">--space-16 · 64px</span></div>
+      <div class="spacing-item"><div class="spacing-item__bar" style="width:96px"></div><span class="spacing-item__label">--space-24 · 96px</span></div>
+    </div>
+  </section>
+
+  <!-- ── BUTTONS ── -->
+  <section id="buttons" class="doc-section">
+    <div class="doc-section__header">
+      <span class="doc-section__number">04</span>
+      <h2 class="doc-section__title">Botões</h2>
+    </div>
+
+    <div class="component-row">
+      <button class="btn btn--primary btn--md">Contratar Plano</button>
+      <button class="btn btn--secondary btn--md">Saiba Mais</button>
+      <button class="btn btn--accent btn--md">Solicitar Contato</button>
+      <button class="btn btn--ghost btn--md">Cancelar</button>
+    </div>
+
+    <div class="component-row" style="margin-bottom:var(--space-4)">
+      <button class="btn btn--primary btn--sm">Botão SM</button>
+      <button class="btn btn--primary btn--md">Botão MD</button>
+      <button class="btn btn--primary btn--lg">Botão LG</button>
+    </div>
+
+    <div class="component-row component-row--dark">
+      <button class="btn btn--accent btn--md">CTA Principal</button>
+      <button class="btn btn--secondary btn--md" style="color:white;border-color:rgba(255,255,255,0.3)">Secundário</button>
+    </div>
+  </section>
+
+  <!-- ── CARDS ── -->
+  <section id="cards" class="doc-section">
+    <div class="doc-section__header">
+      <span class="doc-section__number">05</span>
+      <h2 class="doc-section__title">Cards</h2>
+    </div>
+
+    <div class="grid grid-3" style="gap:var(--space-6)">
+      <div class="card">
+        <div class="card__header">
+          <p class="type-label" style="color:var(--color-sea-green-700);margin-bottom:var(--space-2)">Plano Básico</p>
+          <h3 class="card__title">Cuidado Essencial</h3>
+        </div>
+        <div class="card__body">Assistência funerária completa com organização, suporte e cuidado em todos os momentos.</div>
+        <div class="card__footer">
+          <button class="btn btn--primary btn--sm">Contratar</button>
+        </div>
+      </div>
+
+      <div class="card card--dark">
+        <div class="card__header">
+          <p class="type-label" style="color:var(--color-sea-green-500);margin-bottom:var(--space-2)">Plano Família</p>
+          <h3 class="card__title" style="color:white">Proteção Familiar</h3>
+        </div>
+        <div class="card__body" style="color:rgba(255,255,255,0.65)">Cobertura ampliada para toda a família com tranquilidade e planejamento.</div>
+        <div class="card__footer" style="border-color:rgba(255,255,255,0.12)">
+          <button class="btn btn--accent btn--sm">Contratar</button>
+        </div>
+      </div>
+
+      <div class="card card--tinted">
+        <div class="card__header">
+          <p class="type-label" style="color:var(--color-sea-green-700);margin-bottom:var(--space-2)">Destaque</p>
+          <h3 class="card__title">Planejamento Seguro</h3>
+        </div>
+        <div class="card__body">Planejar com antecedência é uma forma de cuidado e respeito com quem você ama.</div>
+        <div class="card__footer">
+          <button class="btn btn--secondary btn--sm">Saiba Mais</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── BADGES ── -->
+  <section id="badges" class="doc-section">
+    <div class="doc-section__header">
+      <span class="doc-section__number">06</span>
+      <h2 class="doc-section__title">Badges</h2>
+    </div>
+
+    <div class="component-row">
+      <span class="badge badge--primary">Proteção</span>
+      <span class="badge badge--green">Disponível</span>
+      <span class="badge badge--accent">Destaque</span>
+      <span class="badge badge--dark">Premium</span>
+      <span class="badge badge--default">Padrão</span>
+    </div>
+  </section>
+
+  <!-- ── FORMS ── -->
+  <section id="forms" class="doc-section">
+    <div class="doc-section__header">
+      <span class="doc-section__number">07</span>
+      <h2 class="doc-section__title">Formulários</h2>
+    </div>
+
+    <div style="background:var(--color-white);border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:var(--space-10);max-width:560px">
+      <div style="display:flex;flex-direction:column;gap:var(--space-6)">
+        <div class="form-group">
+          <label class="form-label form-label--required">Nome Completo</label>
+          <input type="text" class="form-input" placeholder="Ex: Maria Silva">
+        </div>
+        <div class="form-group">
+          <label class="form-label form-label--required">E-mail</label>
+          <input type="email" class="form-input" placeholder="maria@email.com">
+          <span class="form-hint">Usaremos para enviar informações sobre seu plano.</span>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Mensagem</label>
+          <textarea class="form-textarea" placeholder="Como podemos ajudar?"></textarea>
+        </div>
+        <button class="btn btn--primary btn--md btn--full">Enviar Mensagem</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+</body>
+</html>

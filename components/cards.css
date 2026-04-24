@@ -1,0 +1,68 @@
+/* ============================================================
+   Maya Protege Design System — Card Components
+   ============================================================ */
+
+.card {
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  padding: var(--space-8);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--duration-normal) var(--ease-default);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+/* ── Card Dark ── */
+.card--dark {
+  background: var(--color-timber-green-950);
+  border-color: var(--color-border-dark);
+  color: var(--color-text-on-dark);
+}
+
+/* ── Card Tinted ── */
+.card--tinted {
+  background: var(--color-timber-green-50);
+  border-color: transparent;
+}
+
+/* ── Card Flat ── */
+.card--flat {
+  box-shadow: none;
+  border: 1px solid var(--color-border);
+}
+
+.card__header {
+  margin-bottom: var(--space-4);
+}
+
+.card__title {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-snug);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-2);
+}
+
+.card--dark .card__title {
+  color: var(--color-text-on-dark);
+}
+
+.card__body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--color-text-secondary);
+  line-height: var(--lh-relaxed);
+}
+
+.card__footer {
+  margin-top: var(--space-6);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
