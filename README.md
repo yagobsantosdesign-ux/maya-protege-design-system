@@ -9,6 +9,8 @@ Sistema de design da marca **Maya Protege**, um plano funerário criado para ofe
 ```
 maya-protege-design-system/
 ├── index.css                  ← Entrada principal (importa tudo)
+├── assets/
+│   └── logos/                 ← Logos da marca (SVG) + guia de uso
 ├── tokens/
 │   ├── colors.css             ← Paleta de cores e roles semânticos
 │   ├── typography.css         ← Famílias, escala tipográfica, utilitários
@@ -137,6 +139,18 @@ maya-protege-design-system/
 > **Planejamento · Proteção · Respeito**
 
 O sistema de design reflete esses pilares em cada decisão: tons de verde profundos transmitem estabilidade e cuidado; tipografia institucional equilibrada com corpo acessível; espaços generosos que respiram tranquilidade.
+
+---
+
+## Logos
+
+As logos da marca estão em [`assets/logos/`](assets/logos/) em formato SVG, com variantes
+horizontal, empilhada e símbolo isolado — em versões clara e escura. Veja o
+[guia de uso](assets/logos/README.md) para escolher a variante correta.
+
+```html
+<img src="assets/logos/maya-protege-horizontal-dark.svg" alt="Maya Protege" height="40">
+```
 
 ---
 
